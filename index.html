@@ -81,7 +81,7 @@
 
         .input-group { margin-bottom: 8px; }
         .input-group label { display: block; font-size: 9px; color: #ff00ff; margin-bottom: 2px; text-transform: uppercase; }
-        .input-group input {
+        .input-group input, .input-group select {
             width: 100%; padding: 6px; border-radius: 4px; border: 1px solid var(--cyber-blue);
             background: #1a0026; color: var(--cyber-blue); box-sizing: border-box; font-size: 11px;
             outline: none;
@@ -100,7 +100,7 @@
             box-shadow: 0 0 20px var(--cyber-pink);
         }
 
-        /* --- STRUK AREA (Original Style Maintained) --- */
+        /* --- STRUK AREA --- */
         .preview-section {
             display: flex;
             flex-wrap: wrap;
@@ -111,10 +111,6 @@
 
         .receipt-card {
             background-color: white;
-            background-image: url('watermark.png'); 
-            background-repeat: repeat;
-            background-size: 300px;
-            background-position: center;
             width: 285px; 
             height: 335px; 
             color: var(--bca-blue);
@@ -180,7 +176,26 @@
     <div class="panel-editor">
         <h3>Cyber Session [B]</h3>
         <div class="input-group"><label>TIMELINE</label><input type="text" id="in2_date"></div>
-        <div class="input-group"><label>BANK CODE</label><input type="text" id="in2_bank" value="BRI"></div>
+        <div class="input-group">
+            <label>BANK PROTOCOL</label>
+            <select id="in2_bank_select">
+                <option value="BRI" selected>BANK BRI</option>
+                <option value="BNI">BANK BNI</option>
+                <option value="MANDIRI">BANK MANDIRI</option>
+                <option value="BSI">BANK SYARIAH INDONESIA</option>
+                <option value="BTN">BANK BTN</option>
+                <option value="PERMATA">BANK PERMATA</option>
+                <option value="CIMB">CIMB NIAGA</option>
+                <option value="DANAMON">BANK DANAMON</option>
+                <option value="PANIN">PANIN BANK</option>
+                <option value="BNC">NEO COMMERCE (Digital)</option>
+                <option value="SEABANK">SEABANK (Digital)</option>
+                <option value="JAGO">BANK JAGO (Digital)</option>
+                <option value="ALADIN">BANK ALADIN (Digital)</option>
+                <option value="LINE BANK">LINE BANK (Digital)</option>
+                <option value="BLU">BLU BY BCA (Digital)</option>
+            </select>
+        </div>
         <div class="input-group"><label>TARGET NAME</label><input type="text" id="in2_nama" value="RATIH MERLINA"></div>
         <div class="input-group"><label>AMOUNT</label><input type="text" id="in2_nom" placeholder="Contoh: 750000"></div>
         <div class="input-group"><label>SENDER</label><input type="text" id="in2_dari" value="Bayu Kurniawan"></div>
@@ -229,7 +244,6 @@
 </div>
 
 <script>
-    // Logic tetap sama untuk fungsionalitas m-BCA
     function setJakartaTime() {
         const now = new Date();
         const formatter = new Intl.DateTimeFormat('id-ID', {
@@ -256,6 +270,7 @@
     const setupSync = (inId, outId, isNominal = false) => {
         const input = document.getElementById(inId);
         const output = document.getElementById(outId);
+        if(!input || !output) return;
         input.addEventListener('input', function() {
             if (isNominal) {
                 let rawValue = this.value.replace(/\D/g, '');
@@ -264,12 +279,16 @@
         });
     };
 
+    // Logic khusus untuk select bank
+    document.getElementById('in2_bank_select').addEventListener('change', function() {
+        document.getElementById('out2_bank').innerText = this.value;
+    });
+
     setupSync('in1_date', 'out1_date'); 
     setupSync('in1_nama', 'out1_nama'); 
     setupSync('in1_nom', 'out1_nom', true); 
     setupSync('in1_dari', 'out1_dari');
     setupSync('in2_date', 'out2_date'); 
-    setupSync('in2_bank', 'out2_bank'); 
     setupSync('in2_nama', 'out2_nama'); 
     setupSync('in2_nom', 'out2_nom', true); 
     setupSync('in2_dari', 'out2_dari');
@@ -286,4 +305,3 @@
 
 </body>
 </html>
-
