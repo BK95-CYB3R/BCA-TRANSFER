@@ -123,12 +123,14 @@
             overflow: hidden;
         }
 
-        .receipt-card::before {
-            content: "";
+        /* Watermark Overlay Perbaikan */
+        .wm-overlay {
             position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background-color: rgba(255, 255, 255, 0.86); 
+            top: 0; left: 0; width: 100%; height: 100%;
+            opacity: 0.1; /* Transparansi watermark */
+            pointer-events: none;
             z-index: 1;
+            object-fit: cover;
         }
 
         .text-content { position: relative; z-index: 2; }
@@ -205,6 +207,8 @@
 
 <div class="preview-section">
     <div id="ss-bca" class="receipt-card">
+        <img src="watermark.png" class="wm-overlay" alt="">
+        
         <div class="text-content">
             <p class="text-row uppercase">m-Transfer:</p>
             <p class="text-row uppercase">BERHASIL</p>
@@ -222,6 +226,8 @@
     </div>
 
     <div id="ss-antar" class="receipt-card">
+        <img src="watermark.png" class="wm-overlay" alt="">
+
         <div class="text-content">
             <p class="text-row uppercase">m-Transfer:</p>
             <p class="text-row uppercase">BERHASIL</p>
@@ -244,6 +250,7 @@
 </div>
 
 <script>
+    // Logic tetap sama
     function setJakartaTime() {
         const now = new Date();
         const formatter = new Intl.DateTimeFormat('id-ID', {
@@ -279,7 +286,6 @@
         });
     };
 
-    // Logic khusus untuk select bank
     document.getElementById('in2_bank_select').addEventListener('change', function() {
         document.getElementById('out2_bank').innerText = this.value;
     });
@@ -294,7 +300,12 @@
     setupSync('in2_dari', 'out2_dari');
 
     function download(id) {
-        html2canvas(document.getElementById(id), { scale: 4, backgroundColor: "#ffffff", useCORS: true }).then(canvas => {
+        html2canvas(document.getElementById(id), { 
+            scale: 4, 
+            backgroundColor: "#ffffff", 
+            useCORS: true,
+            allowTaint: true 
+        }).then(canvas => {
             const link = document.createElement('a');
             link.download = `CyberBCA_${id}.png`;
             link.href = canvas.toDataURL();
