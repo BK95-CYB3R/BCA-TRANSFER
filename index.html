@@ -17,8 +17,9 @@
             --cyber-pink: #ff00ff;
             --cyber-purple: #bc13fe;
             --cyber-bg: #050505;
-            --bca-blue: #004a91;
-            --bca-gradient: linear-gradient(to bottom, #0072db, #004a91);
+            /* BIRU BCA CERAH (Updated) */
+            --bca-blue: #0066cc; 
+            --bca-gradient: linear-gradient(to bottom, #0088ff, #0055bb);
         }
 
         body {
@@ -134,7 +135,7 @@
             background-position: center;
             width: 285px; 
             height: 310px; 
-            color: var(--bca-blue);
+            color: var(--bca-blue); /* Menggunakan Biru Cerah */
             padding: 22px 20px;
             display: flex;
             flex-direction: column;
@@ -148,12 +149,12 @@
             content: "";
             position: absolute;
             top: 0; left: 0; right: 0; bottom: 0;
-            background-color: rgba(255, 255, 255, 0.86); 
+            background-color: rgba(255, 255, 255, 0.88); 
             z-index: 1;
         }
 
         .text-content { position: relative; z-index: 2; }
-        .text-row { font-size: 11px; line-height: 1.15; margin: 0; display: flex; align-items: center; }
+        .text-row { font-size: 10.5px; line-height: 1.15; margin: 0; display: flex; align-items: center; font-weight: 500; }
         .black-shape { display: inline-block; width: 110px; height: 11px; background-color: #000; margin-left: 3px; border-radius: 20px; }
         .uppercase { text-transform: uppercase; }
         .mb-space { margin-bottom: 8px; }
@@ -199,13 +200,13 @@
 
     <div class="panel-editor">
         <h3>SS 2 - ANTAR BANK</h3>
-        <div class="input-group"><label>Waktu</label><input type="text" id="in2_date"></div>
+        <div class="input-group"><label>Waktu</label><input type="text" id="in2_date" value="24/02/2026 16:11:02"></div>
         <div class="input-group">
             <label>Pilih Bank Tujuan</label>
             <select id="in2_bank_select">
+                <option value="BNI" selected>BANK BNI</option>
                 <option value="MANDIRI">BANK MANDIRI</option>
                 <option value="BRI">BANK BRI</option>
-                <option value="BNI">BANK BNI</option>
                 <option value="BSI">BANK SYARIAH INDONESIA</option>
                 <option value="BTN">BANK BTN</option>
                 <option value="CIMB NIAGA">CIMB NIAGA</option>
@@ -220,9 +221,10 @@
                 <option value="SEA BANK">SEA BANK</option>
             </select>
         </div>
-        <div class="input-group"><label>Penerima</label><input type="text" id="in2_nama" value="RATIH MERLINA"></div>
-        <div class="input-group"><label>Nominal</label><input type="text" id="in2_nom" placeholder="Contoh: 750000"></div>
-        <div class="input-group"><label>Pengirim</label><input type="text" id="in2_dari" value="Bayu Kurniawan"></div>
+        <div class="input-group"><label>Penerima</label><input type="text" id="in2_nama" value="BAYU KURNIAWAN"></div>
+        <div class="input-group"><label>Nominal</label><input type="text" id="in2_nom" value="1000000"></div>
+        <div class="input-group"><label>Berita</label><input type="text" id="in2_berita" value="cidukan bayu dubai"></div>
+        <div class="input-group"><label>Ref (Auto-Generated)</label><input type="text" id="in2_ref"></div>
         <button class="btn-download" onclick="download('ss-antar')">Download Struk 2</button>
     </div>
 </div>
@@ -249,15 +251,16 @@
         <div class="text-content">
             <p class="text-row">m-Transfer:</p>
             <p class="text-row uppercase">BERHASIL</p>
-            <p id="out2_date" class="text-row mb-space">--/--/---- --:--:--</p>
+            <p id="out2_date" class="text-row mb-space">24/02/2026 16:11:02</p>
             <p class="text-row uppercase">Ke Rekening Tujuan</p>
-            <p class="text-row uppercase"><span id="out2_bank">MANDIRI</span><span class="black-shape"></span></p>
-            <p id="out2_nama" class="text-row mb-space uppercase">RATIH MERLINA</p>
-            <p class="text-row">NOMINAL TRANSFER Rp&nbsp;<span id="out2_nom">0,00</span></p>
+            <p class="text-row uppercase"><span id="out2_bank">BNI</span><span class="black-shape"></span></p>
+            <p id="out2_nama" class="text-row mb-space uppercase">BAYU KURNIAWAN</p>
+            <p class="text-row">NOMINAL TRANSFER Rp&nbsp;<span id="out2_nom">1.000.000,00</span></p>
             <p class="text-row">BIAYA Rp&nbsp;2.500,00</p>
             <p class="text-row uppercase">LAYANAN BI FAST</p>
-            <p class="text-row">BERITA dari&nbsp;<span id="out2_dari">Bayu Kurniawan</span></p>
-            <p class="text-row uppercase">TUJUAN TRANSAKSI INVESTASI</p>
+            <p class="text-row">BERITA&nbsp;<span id="out2_berita">cidukan bayu dubai</span></p>
+            <p class="text-row uppercase">TUJUAN TRANSAKSI Investasi</p>
+            <p class="text-row">Ref&nbsp;<span id="out2_ref"></span></p>
         </div>
         <div class="nav-bottom">
             <div class="icon-circle"><svg viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92-1.31-2.92-2.92-2.92z"/></svg></div>
@@ -282,7 +285,7 @@
     function drawHacker() {
         ctx.fillStyle = 'rgba(5, 5, 5, 0.1)';
         ctx.fillRect(0, 0, canvas.width, canvas.height);
-        ctx.fillStyle = '#ff00ff'; // Warna Hacker Pink
+        ctx.fillStyle = '#ff00ff'; 
         ctx.font = fontSize + 'px arial';
 
         for (let i = 0; i < drops.length; i++) {
@@ -295,6 +298,16 @@
     setInterval(drawHacker, 33);
 
     // --- LOGIC EDITOR ---
+    function generateAutoRef() {
+        const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+        let ref = '2025'; 
+        for (let i = 0; i < 23; i++) {
+            ref += chars.charAt(Math.floor(Math.random() * chars.length));
+        }
+        document.getElementById('in2_ref').value = ref;
+        document.getElementById('out2_ref').innerText = ref;
+    }
+
     function setJakartaTime() {
         const now = new Date();
         const formatter = new Intl.DateTimeFormat('id-ID', {
@@ -303,13 +316,13 @@
         });
         const p = formatter.formatToParts(now);
         const finalTime = `${p.find(x=>x.type=='day').value}/${p.find(x=>x.type=='month').value}/${p.find(x=>x.type=='year').value} ${p.find(x=>x.type=='hour').value}:${p.find(x=>x.type=='minute').value}:${p.find(x=>x.type=='second').value}`;
-        ['in1_date', 'in2_date'].forEach(id => document.getElementById(id).value = finalTime);
-        ['out1_date', 'out2_date'].forEach(id => document.getElementById(id).innerText = finalTime);
+        
+        document.getElementById('in1_date').value = finalTime;
+        document.getElementById('out1_date').innerText = finalTime;
     }
-    setJakartaTime();
 
     function formatRupiah(angka) {
-        let numberString = angka.replace(/[^,\d]/g, '').toString(),
+        let numberString = angka.toString().replace(/[^,\d]/g, ''),
             split = numberString.split(','),
             sisa = split[0].length % 3,
             rupiah = split[0].substr(0, sisa),
@@ -324,6 +337,8 @@
     const setupSync = (inId, outId, isNominal = false, isSelect = false) => {
         const input = document.getElementById(inId);
         const output = document.getElementById(outId);
+        if(!input || !output) return;
+
         input.addEventListener(isSelect ? 'change' : 'input', function() {
             if (isNominal) {
                 let rawValue = this.value.replace(/\D/g, '');
@@ -331,18 +346,29 @@
             } else {
                 output.innerText = this.value;
             }
+            if(isSelect && inId === 'in2_bank_select') {
+                generateAutoRef();
+            }
         });
+    };
+
+    window.onload = function() {
+        setJakartaTime();
+        generateAutoRef();
+        document.getElementById('out2_nom').innerText = formatRupiah("1000000");
     };
 
     setupSync('in1_date', 'out1_date'); 
     setupSync('in1_nama', 'out1_nama'); 
     setupSync('in1_nom', 'out1_nom', true); 
     setupSync('in1_dari', 'out1_dari');
+    
     setupSync('in2_date', 'out2_date'); 
     setupSync('in2_bank_select', 'out2_bank', false, true); 
     setupSync('in2_nama', 'out2_nama'); 
     setupSync('in2_nom', 'out2_nom', true); 
-    setupSync('in2_dari', 'out2_dari');
+    setupSync('in2_berita', 'out2_berita');
+    setupSync('in2_ref', 'out2_ref');
 
     function download(id) {
         html2canvas(document.getElementById(id), { 
@@ -360,4 +386,3 @@
 
 </body>
 </html>
-
