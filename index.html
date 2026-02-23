@@ -3,15 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>m-BCA Cyberpink Edition - Clean</title>
+    <title>m-BCA Cyberpink Edition - Compact</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto:wght@400;500&display=swap');
 
+        @font-face {
+            font-family: 'BCASansCustom';
+            src: url('BCASans-Regular.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
+
         :root {
-            --bca-blue-soft: #0060b5; 
-            --bca-blue-dark: #002e5c; 
-            --bca-gradient: linear-gradient(to bottom, #0072db, #004a91);
+            --bca-blue-soft: #2E77BC; 
+            --bca-blue-dark: #004A99; 
+            --bca-gradient: linear-gradient(to bottom, #0081F1, #0056B3);
             --cyber-pink: #ff00ff;
             --cyber-blue: #00ffff;
             --dark-bg: #0d0211;
@@ -23,10 +30,10 @@
             background-image: 
                 linear-gradient(rgba(255, 0, 255, 0.05) 1px, transparent 1px),
                 linear-gradient(90deg, rgba(255, 0, 255, 0.05) 1px, transparent 1px);
-            background-size: 30px 30px;
+            background-size: 20px 20px;
             color: white;
             margin: 0;
-            padding: 20px;
+            padding: 15px;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -35,88 +42,80 @@
         .warning-banner {
             background: #ff0055;
             color: white;
-            padding: 10px 20px;
-            border-radius: 8px;
-            margin-bottom: 20px;
+            padding: 8px 15px;
+            border-radius: 6px;
+            margin-bottom: 15px;
             font-family: 'Orbitron', sans-serif;
-            font-size: 12px;
+            font-size: 10px;
             text-align: center;
-            border: 2px solid white;
-            box-shadow: 0 0 15px #ff0055;
-            animation: blink 1.5s infinite;
-            max-width: 500px;
-        }
-
-        @keyframes blink {
-            50% { opacity: 0.7; transform: scale(0.98); }
+            border: 1px solid white;
+            box-shadow: 0 0 10px #ff0055;
+            max-width: 450px;
         }
 
         .editor-section {
             display: flex;
             flex-wrap: wrap;
-            gap: 15px;
-            margin-bottom: 25px;
+            gap: 10px;
+            margin-bottom: 20px;
             justify-content: center;
         }
 
         .panel-editor {
             background: rgba(20, 20, 30, 0.9);
-            padding: 15px;
-            border-radius: 12px;
-            width: 260px;
-            border: 2px solid var(--cyber-pink);
-            box-shadow: 0 0 10px var(--cyber-pink), inset 0 0 5px var(--cyber-pink);
+            padding: 12px;
+            border-radius: 10px;
+            width: 230px;
+            border: 1.5px solid var(--cyber-pink);
+            box-shadow: 0 0 8px var(--cyber-pink);
             backdrop-filter: blur(5px);
         }
         
         .panel-editor h3 { 
             font-family: 'Orbitron', sans-serif;
-            font-size: 10px; 
+            font-size: 9px; 
             color: var(--cyber-blue); 
             margin: 0 0 10px 0; 
             text-transform: uppercase;
-            letter-spacing: 2px;
+            letter-spacing: 1px;
         }
 
-        .input-group { margin-bottom: 8px; }
-        .input-group label { display: block; font-size: 9px; color: #ff00ff; margin-bottom: 2px; text-transform: uppercase; }
+        .input-group { margin-bottom: 6px; }
+        .input-group label { display: block; font-size: 8px; color: #ff00ff; margin-bottom: 2px; text-transform: uppercase; }
         .input-group input, .input-group select {
-            width: 100%; padding: 6px; border-radius: 4px; border: 1px solid var(--cyber-blue);
-            background: #1a0026; color: var(--cyber-blue); box-sizing: border-box; font-size: 11px;
+            width: 100%; padding: 5px; border-radius: 4px; border: 1px solid var(--cyber-blue);
+            background: #1a0026; color: var(--cyber-blue); box-sizing: border-box; font-size: 10px;
             outline: none;
         }
 
-        .btn-download {
-            width: 100%; padding: 8px; background: transparent; border: 1px solid var(--cyber-pink);
+        .btn-download, .btn-toggle {
+            width: 100%; padding: 6px; background: transparent; border: 1px solid var(--cyber-pink);
             border-radius: 4px; color: var(--cyber-pink); font-weight: bold; cursor: pointer; 
-            font-size: 10px; margin-top: 10px; font-family: 'Orbitron', sans-serif;
+            font-size: 9px; margin-top: 5px; font-family: 'Orbitron', sans-serif;
             transition: 0.3s;
         }
 
-        .btn-download:hover {
-            background: var(--cyber-pink);
-            color: white;
-            box-shadow: 0 0 20px var(--cyber-pink);
-        }
+        .btn-toggle { border-color: var(--cyber-blue); color: var(--cyber-blue); }
 
         .preview-section {
             display: flex;
             flex-wrap: wrap;
-            gap: 20px;
+            gap: 15px;
             justify-content: center;
-            padding-bottom: 40px;
+            padding-bottom: 30px;
         }
 
         .receipt-card {
-            background-color: white;
-            width: 285px; 
-            height: 355px;
+            font-family: 'BCASansCustom', Arial, sans-serif; 
+            background-color: #fffefb; 
+            width: 220px;
+            min-height: auto; 
             color: var(--bca-blue-soft);
-            padding: 22px 20px;
+            padding: 12px 12px 10px 12px;
             display: flex;
             flex-direction: column;
             box-sizing: border-box;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.5);
             position: relative;
             overflow: hidden;
         }
@@ -124,51 +123,79 @@
         .wm-overlay {
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
-            opacity: 0.1; 
+            opacity: 0.08; 
             pointer-events: none;
             z-index: 1;
             object-fit: cover;
         }
 
-        .text-content { position: relative; z-index: 2; }
-        .text-row { font-size: 13.5px; line-height: 1.25; margin: 0; font-weight: 500; display: flex; align-items: center; color: var(--bca-blue-soft); }
+        .text-content { position: relative; z-index: 2; flex-grow: 1; }
+        
+        .text-row { 
+            font-size: 7.5px;
+            line-height: 1.25; 
+            margin: 0; 
+            font-weight: 500; 
+            display: flex; 
+            align-items: center; 
+            color: var(--bca-blue-soft); 
+        }
         
         .blue-shape { 
             display: inline-block; 
-            width: 120px; 
-            height: 14px; 
-            background-color: #000000; /* Warna Hitam Sesuai Request */
-            margin-left: 5px; 
-            border-radius: 20px; 
+            width: 70px; 
+            height: 9px; 
+            background-color: #000000; 
+            margin-left: 2px; 
+            border-radius: 50px; 
+            vertical-align: middle;
         }
+
+        .hidden { display: none !important; }
         
         .uppercase { text-transform: uppercase; }
-        .mb-space { margin-bottom: 12px; }
+        .mb-space { margin-bottom: 5px; } 
+        
+        .small-info { font-size: 7px; line-height: 1.2; margin-top: 1px; }
 
         .nav-bottom {
-            position: absolute;
-            bottom: 18px; left: 20px; right: 20px;
-            display: flex; align-items: center; gap: 8px; z-index: 3;
+            position: relative;
+            margin-top: 8px; 
+            display: flex; 
+            align-items: center; 
+            gap: 5px; 
+            z-index: 3;
+            width: 100%;
         }
 
         .icon-circle {
-            width: 36px; height: 36px; border: 1.5px solid var(--bca-blue-soft);
+            width: 26px; height: 26px; border: 1.2px solid var(--bca-blue-soft);
             border-radius: 50%; display: flex; justify-content: center; align-items: center;
             background: white;
         }
         
-        .icon-circle svg { width: 18px; height: 18px; fill: var(--bca-blue-soft); }
+        .icon-circle svg { width: 12px; height: 12px; fill: var(--bca-blue-soft); }
+        
         .btn-ok {
-            flex-grow: 1; background: var(--bca-gradient); color: white;
-            text-align: center; padding: 9px; border-radius: 7px; 
-            font-weight: 500; font-size: 15px;
+            font-family: 'BCASansCustom', sans-serif;
+            flex-grow: 1; 
+            background: var(--bca-gradient); 
+            color: white;
+            height: 28px; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            border-radius: 5px; 
+            font-weight: 500; 
+            font-size: 11px;
+            line-height: 1;
         }
     </style>
 </head>
 <body>
 
 <div class="warning-banner">
-    ⚠️ PERINGATAN KERAS: Alat ini hanya untuk penggunaan pribadi/edukasi. Dilarang keras menyalahgunakan struk untuk tindakan penipuan atau kriminal!
+    ⚠️ PERINGATAN: Gunakan hanya untuk tujuan edukasi/pribadi.
 </div>
 
 <div class="editor-section">
@@ -176,38 +203,53 @@
         <h3>Cyber Session [A]</h3>
         <div class="input-group"><label>TIMELINE</label><input type="text" id="in1_date"></div>
         <div class="input-group"><label>TARGET NAME</label><input type="text" id="in1_nama" value="PANGESTU PANGAREP"></div>
-        <div class="input-group"><label>AMOUNT</label><input type="text" id="in1_nom" placeholder="Contoh: 200000"></div>
+        <div class="input-group"><label>AMOUNT</label><input type="text" id="in1_nom" placeholder="200000"></div>
         <div class="input-group"><label>SENDER</label><input type="text" id="in1_dari" value="Bayu Kurniawan"></div>
-        
+        <button class="btn-toggle" onclick="toggleShape('shape1')">HIDE/SHOW SHAPE</button>
         <button class="btn-download" onclick="download('ss-bca')">EXPORT DATA [1]</button>
     </div>
 
     <div class="panel-editor">
         <h3>Cyber Session [B]</h3>
-        <div class="input-group"><label>TIMELINE</label><input type="text" id="in2_date"></div>
+        <div class="input-group"><label>TIMELINE</label><input type="text" id="in2_date" value="21/02/2026 02:02:13"></div>
         <div class="input-group">
-            <label>DESTINATION PROTOCOL</label>
-            <select id="in2_bank_select">
-                <option value="BRI" selected>BRI</option>
-                <option value="MANDIRI">MANDIRI</option>
+            <label>SELECT DESTINATION</label>
+            <select id="in2_bank">
+                <option value="BRI">BRI</option>
                 <option value="BNI">BNI</option>
+                <option value="MANDIRI">MANDIRI</option>
                 <option value="BSI">BSI</option>
-                <option value="DANA">DANA</option>
+                <option value="BTN">BTN</option>
+                <option value="DANAMON">DANAMON</option>
+                <option value="CIMB NIAGA">CIMB NIAGA</option>
+                <option value="PERMATA">PERMATA</option>
+                <option value="MAYBANK">MAYBANK</option>
+                <option value="PANIN">PANIN</option>
+                <option value="OCBC NISP">OCBC NISP</option>
+                <option value="BCA DIGITAL">BCA DIGITAL (blu)</option>
+                <option value="BANK JAGO">BANK JAGO</option>
+                <option value="ALOBANK">ALOBANK</option>
+                <option value="SEABANK">SEABANK</option>
+                <option value="BANK NEO COMMERCE">BANK NEO COMMERCE</option>
+                <option value="BANK DKI">BANK DKI</option>
+                <option value="DANA">DANA (E-Wallet)</option>
+                <option value="OVO">OVO (E-Wallet)</option>
+                <option value="GOPAY">GOPAY (E-Wallet)</option>
             </select>
         </div>
-        <div class="input-group"><label>TARGET NAME</label><input type="text" id="in2_nama" value="RATIH MERLINA"></div>
-        <div class="input-group"><label>AMOUNT</label><input type="text" id="in2_nom" placeholder="Contoh: 750000"></div>
-        <div class="input-group"><label>SENDER</label><input type="text" id="in2_dari" value="Bayu Kurniawan"></div>
-
+        <div class="input-group"><label>TARGET NAME</label><input type="text" id="in2_nama" value="BAYU KURNIAWAN"></div>
+        <div class="input-group"><label>AMOUNT</label><input type="text" id="in2_nom" value="1000000"></div>
+        <div class="input-group"><label>SENDER</label><input type="text" id="in2_dari" value="CIDUKAN DUBAI"></div>
+        <button class="btn-toggle" onclick="toggleShape('shape2')">HIDE/SHOW SHAPE</button>
         <button class="btn-download" onclick="download('ss-antar')">EXPORT DATA [2]</button>
     </div>
 </div>
 
 <div class="preview-section">
     <div id="ss-bca" class="receipt-card">
-        <img src="watermark.png" class="wm-overlay" alt="">
+        <img src="watermark.png" class="wm-overlay">
         <div class="text-content">
-            <p class="text-row uppercase">m-Transfer:</p>
+            <p class="text-row">m-Transfer:</p>
             <p class="text-row uppercase">BERHASIL</p>
             <p id="out1_date" class="text-row mb-space">--/--/---- --:--:--</p>
             <p class="text-row uppercase">Ke<span id="shape1" class="blue-shape"></span></p>
@@ -223,20 +265,27 @@
     </div>
 
     <div id="ss-antar" class="receipt-card">
-        <img src="watermark.png" class="wm-overlay" alt="">
+        <img src="watermark.png" class="wm-overlay">
         <div class="text-content">
-            <p class="text-row uppercase">m-Transfer:</p>
+            <p class="text-row">m-TRANSFER:</p>
             <p class="text-row uppercase">BERHASIL</p>
-            <p id="out2_date" class="text-row mb-space">--/--/---- --:--:--</p>
-            <p id="label_tujuan" class="text-row uppercase">Ke Rekening Tujuan</p>
+            <p id="out2_date" class="text-row mb-space">21/02/2026 02:02:13</p>
+            
+            <p class="text-row uppercase">KE REKENING TUJUAN</p>
             <p class="text-row uppercase"><span id="out2_bank">BRI</span><span id="shape2" class="blue-shape"></span></p>
-            <p id="out2_nama" class="text-row mb-space uppercase">RATIH MERLINA</p>
-            <p class="text-row">NOMINAL TRANSFER Rp&nbsp;<span id="out2_nom">0,00</span></p>
-            <p class="text-row">BIAYA Rp&nbsp;2.500,00</p>
+            <p id="out2_nama" class="text-row mb-space uppercase">BAYU KURNIAWAN</p>
+            
+            <p class="text-row uppercase">NOMINAL TRANSFER Rp&nbsp;<span id="out2_nom">1.000.000,00</span></p>
+            <p class="text-row uppercase">BIAYA Rp&nbsp;2.500,00</p>
             <p class="text-row uppercase">LAYANAN BI FAST</p>
-            <p class="text-row">BERITA dari&nbsp;<span id="out2_dari">Bayu Kurniawan</span></p>
+            <p class="text-row">BERITA dari&nbsp;<span id="out2_dari">CIDUKAN DUBAI</span></p>
             <p class="text-row uppercase">TUJUAN TRANSAKSI INVESTASI</p>
-            <p id="out2_ref" class="text-row uppercase">Ref --</p>
+            <p id="out2_ref" class="text-row uppercase mb-space">REF 20260221BRI56G76R0K</p>
+
+            <p class="text-row small-info">Biaya Termasuk PPN (Bila ada)</p>
+            <p class="text-row small-info">PT. BANK CENTRAL ASIA TBK.</p>
+            <p class="text-row small-info">MENARA BCA - JAKARTA PUSAT</p>
+            <p class="text-row small-info">NPWP : 0013084496091988</p>
         </div>
         <div class="nav-bottom">
             <div class="icon-circle"><svg viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92-1.31-2.92-2.92-2.92z"/></svg></div>
@@ -247,18 +296,20 @@
 </div>
 
 <script>
-    function generateRefForBank(bankName, datePrefix) {
-        if (bankName === 'DANA') {
-            const randomFat = Math.floor(100 + Math.random() * 900);
-            return `Ref ${datePrefix}DNID SITX FAT${randomFat}`;
-        }
-        const bankId = bankName.substring(0, 3).toUpperCase();
-        const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
-        let randomPart = '';
-        for (let i = 0; i < 8; i++) {
+    function toggleShape(id) {
+        const shape = document.getElementById(id);
+        shape.classList.toggle('hidden');
+    }
+
+    function generateRandomRef(bankName) {
+        const datePart = "20260221";
+        const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+        let randomPart = "";
+        for (let i = 0; i < 11; i++) {
             randomPart += chars.charAt(Math.floor(Math.random() * chars.length));
         }
-        return `Ref ${datePrefix}${bankId}${randomPart}`;
+        const bankPrefix = bankName.substring(0, 3).replace(/\s/g, 'X').toUpperCase();
+        return `REF ${datePart}${bankPrefix}${randomPart}`;
     }
 
     function setJakartaTime() {
@@ -268,43 +319,19 @@
             hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false 
         });
         const p = formatter.formatToParts(now);
-        
         const day = p.find(x=>x.type=='day').value;
         const month = p.find(x=>x.type=='month').value;
         const year = p.find(x=>x.type=='year').value;
         const hour = p.find(x=>x.type=='hour').value;
         const minute = p.find(x=>x.type=='minute').value;
         const second = p.find(x=>x.type=='second').value;
-
         const finalTime = `${day}/${month}/${year} ${hour}:${minute}:${second}`;
-        const datePrefix = `${year}${month}${day}`;
-
-        ['in1_date', 'in2_date'].forEach(id => document.getElementById(id).value = finalTime);
-        ['out1_date', 'out2_date'].forEach(id => document.getElementById(id).innerText = finalTime);
         
-        updatePanelB();
+        document.getElementById('in1_date').value = finalTime;
+        document.getElementById('out1_date').innerText = finalTime;
+        document.getElementById('in2_date').value = finalTime;
+        document.getElementById('out2_date').innerText = finalTime;
     }
-    
-    function updatePanelB() {
-        const select = document.getElementById('in2_bank_select');
-        const bankName = select.value;
-        const outBank = document.getElementById('out2_bank');
-        const labelTujuan = document.getElementById('label_tujuan');
-        
-        const now = new Date();
-        const datePrefix = `${now.getFullYear()}${String(now.getMonth() + 1).padStart(2, '0')}${String(now.getDate()).padStart(2, '0')}`;
-
-        if (bankName === 'DANA') {
-            outBank.innerText = 'DANA';
-            labelTujuan.innerText = 'Ke';
-        } else {
-            outBank.innerText = bankName;
-            labelTujuan.innerText = 'Ke Rekening Tujuan';
-        }
-        document.getElementById('out2_ref').innerText = generateRefForBank(bankName, datePrefix);
-    }
-
-    setJakartaTime();
 
     function formatRupiah(angka) {
         let numberString = angka.replace(/[^,\d]/g, '').toString(),
@@ -328,8 +355,16 @@
         });
     };
 
-    document.getElementById('in2_bank_select').addEventListener('change', updatePanelB);
+    const bankInput = document.getElementById('in2_bank');
+    const bankOutput = document.getElementById('out2_bank');
+    const refOutput = document.getElementById('out2_ref');
 
+    bankInput.addEventListener('change', function() {
+        bankOutput.innerText = this.value;
+        refOutput.innerText = generateRandomRef(this.value);
+    });
+
+    setJakartaTime();
     setupSync('in1_date', 'out1_date'); 
     setupSync('in1_nama', 'out1_nama'); 
     setupSync('in1_nom', 'out1_nom', true); 
@@ -339,16 +374,19 @@
     setupSync('in2_nom', 'out2_nom', true); 
     setupSync('in2_dari', 'out2_dari');
 
+    document.getElementById('out2_nom').innerText = formatRupiah(document.getElementById('in2_nom').value);
+    refOutput.innerText = generateRandomRef(bankInput.value);
+
     function download(id) {
         html2canvas(document.getElementById(id), { 
-            scale: 4, 
-            backgroundColor: "#ffffff", 
-            useCORS: true,
-            allowTaint: true 
+            scale: 3, 
+            backgroundColor: null,
+            logging: false,
+            useCORS: true
         }).then(canvas => {
             const link = document.createElement('a');
-            link.download = `CyberBCA_Clean_${id}.png`;
-            link.href = canvas.toDataURL();
+            link.download = `mBCA_compact_${id}.png`;
+            link.href = canvas.toDataURL('image/png');
             link.click();
         });
     }
